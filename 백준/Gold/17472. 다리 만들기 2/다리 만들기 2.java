@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -135,20 +134,16 @@ public class Main {
         
         int ans = 0;
         int cnt = 0;
-        if(pq.size() < island_cnt-2) {
-        	System.out.println(-1);
-        	return;
-        }
         
         while(cnt != island_cnt-2) {
+        	if(pq.isEmpty()) {
+        		ans = -1;
+        		break;
+        	}
         	Edge E = pq.poll();
         	if(isUnion(E.e, E.s)) {
         		ans += E.cost;
         		cnt++;
-        	}
-        	if(pq.isEmpty() && cnt != island_cnt-2) {
-        		ans = -1;
-        		break;
         	}
         }
         
