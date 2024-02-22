@@ -6,7 +6,8 @@ import java.util.StringTokenizer;
 
 public class Solution {
 	static int D, W, K, ANS;
-	static int[][] film; 
+	static int[][] film, tmp_film;
+	static int[] a0, a1;
 	static StringTokenizer st; 
 
 	public static void main(String[] args) throws IOException {
@@ -19,11 +20,15 @@ public class Solution {
 			D = Integer.parseInt(st.nextToken());
 			W = Integer.parseInt(st.nextToken());
 			K = Integer.parseInt(st.nextToken());
-			film = new int[D][W];
+			a0 = new int[W]; a1 = new int[W];
+			Arrays.fill(a0, 0);
+			Arrays.fill(a1, 1);
+			film = new int[D][W]; tmp_film = new int[D][W];
 			for (int i = 0; i < D; i++) {
 				st = new StringTokenizer(br.readLine());
 				for (int j = 0; j < W; j++) {
 					film[i][j] = Integer.parseInt(st.nextToken());
+                    tmp_film[i][j] = film[i][j];
 				}
 			}
 			
@@ -44,12 +49,11 @@ public class Solution {
 		if(cnt == D) return;
 		
 		recur(cnt+1, n);
-		int[] tmp = film[cnt].clone();
-		Arrays.fill(film[cnt], 0);
+		film[cnt] = a0;
 		recur(cnt+1, n+1);
-		Arrays.fill(film[cnt], 1);
+		film[cnt] = a1;
 		recur(cnt+1, n+1);
-		film[cnt] = tmp;
+		film[cnt] = tmp_film[cnt];
 	}
 	
 	private static boolean isCheck() {
