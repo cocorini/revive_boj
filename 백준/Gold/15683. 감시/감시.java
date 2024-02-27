@@ -22,7 +22,6 @@ public class Main {
     }
     static List<Pos> CCTV = new ArrayList<>();
     static int[] dir;
-    static List<Pos>[] direction = new ArrayList[6];
     
     public static void main(String[] args) throws IOException {
     	// 입력 받기
@@ -41,16 +40,6 @@ public class Main {
 			}
 		}
         dir = new int[cctv_cnt];
-        for (int i = 1; i < 6; i++) {
-			direction[i] = new ArrayList<>();
-			if(i==1) {
-				direction[i].add(new Pos(-1, 0));
-				direction[i].add(new Pos(-1, 0));
-				direction[i].add(new Pos(-1, 0));
-				direction[i].add(new Pos(-1, 0));
-			}
-		}
-        
         recur(0);
         System.out.println(Ans);
     }
