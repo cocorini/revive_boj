@@ -12,6 +12,7 @@ public class Main {
 	static List<Integer>[] tree;
 	static int[] child_cnt;
 	static boolean[] visited;
+	static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -40,8 +41,9 @@ public class Main {
 		for (int i = 0; i < Q; i++) {
 			st = new StringTokenizer(br.readLine());
 			int q = Integer.parseInt(st.nextToken());
-			System.out.println(child_cnt[q]);
+			sb.append(child_cnt[q]+"\n");
 		}
+		System.out.println(sb);
 	}
 
 	private static void recur(int node) {
