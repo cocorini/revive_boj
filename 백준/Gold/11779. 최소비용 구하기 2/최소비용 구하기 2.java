@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.lang.*;
 
 public class Main {
 	static StringTokenizer st;
@@ -16,8 +17,7 @@ public class Main {
 		public Edge2(int e, int cost, int[] arr) {
 			super(e, cost);
 			this.arr = new int[arr.length+1];
-			for (int i = 0; i < arr.length; i++)
-				this.arr[i] = arr[i];
+			System.arraycopy(arr, 0, this.arr, 0, arr.length);
 			this.arr[this.arr.length-1] = e;
 		}
 	}
