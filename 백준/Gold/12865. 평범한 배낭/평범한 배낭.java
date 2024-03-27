@@ -1,10 +1,9 @@
 import java.io.*;
 import java.util.*;
-
 public class Main {
 	static StringTokenizer st;
 	static int N, K;
-	static int[][] v_pack;
+	static int[] v_pack;
 	static class Obj{
 		int W, V;
 		public Obj(int w, int v) {
@@ -18,7 +17,7 @@ public class Main {
 		st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
-		v_pack = new int[N+1][K+1];
+		v_pack = new int[K+1];
 		Obj[] objs = new Obj[N+1];
 		objs[0] = new Obj(0, 0);
 		
@@ -30,12 +29,11 @@ public class Main {
 		}
 		
 		for (int i = 1; i <= N; i++) {
-			for (int j = 1; j <= K; j++) {
-				v_pack[i][j] = v_pack[i-1][j];
-				if(j>=objs[i].W) v_pack[i][j] = Math.max(v_pack[i][j], v_pack[i-1][j-objs[i].W]+objs[i].V);
+			for (int j = K; j >= objs[i].W; j--) {
+				v_pack[j] = Math.max(v_pack[j], v_pack[j-objs[i].W]+objs[i].V);
 			}
 		}
 		
-		System.out.println(v_pack[N][K]);
+		System.out.println(v_pack[K]);
 	}
 }
