@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
 	static StringTokenizer st;
 	static int[][] sudoku = new int[9][9];
-	static boolean[][] row = new boolean[9][10], col = new boolean[9][10], box = new boolean[9][10];
+	static int[] rowbit = new int[9], colbit = new int[9], boxbit = new int[9];
 	static boolean ans = false;
 
 	public static void main(String[] args) throws IOException {
@@ -35,16 +35,16 @@ public class Main {
 			return;
 		}
 		for (int i = 1; i <= 9; i++) {
-			if(!row[r][i] && !col[c][i] && !box[r/3*3+c/3][i]) {
-				row[r][i] = true;
-				col[c][i] = true;
-				box[r/3*3+c/3][i] = true;
+			if (((rowbit[r]&(1<<i))==0) && ((colbit[c]&(1<<i))==0) && ((boxbit[r/3*3+c/3]&(1<<i))==0)) {
+				rowbit[r] |= (1<<i);
+				colbit[c] |= (1<<i);
+				boxbit[r/3*3+c/3] |= (1<<i);
 				sudoku[r][c] = i;
 				recur(r, c+1);
 				sudoku[r][c] = 0;
-				row[r][i] = false;
-				col[c][i] = false;
-				box[r/3*3+c/3][i] = false;
+				rowbit[r] &= ~(1<<i);
+				colbit[c] &= ~(1<<i);
+				boxbit[r/3*3+c/3] &= ~(1<<i);
 			}
 		}
 	}
@@ -55,9 +55,9 @@ public class Main {
 			for (int j = 0; j < 9; j++) {
 				sudoku[i][j] = s.charAt(j)-'0';
 				if(sudoku[i][j]!=0) {
-					row[i][sudoku[i][j]] = true;
-					col[j][sudoku[i][j]] = true;
-					box[i/3*3+j/3][sudoku[i][j]] = true;
+					rowbit[i] |= (1<<sudoku[i][j]);
+					colbit[j] |= (1<<sudoku[i][j]);
+					boxbit[i/3*3+j/3] |= (1<<sudoku[i][j]);
 				}
 			}
 		}
