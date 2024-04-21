@@ -4,7 +4,7 @@ import java.io.*;
 public class Solution {
 	static StringTokenizer st;
 	static int N, M;
-	
+	static StringBuffer sb = new StringBuffer();
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());
@@ -14,8 +14,9 @@ public class Solution {
 			M = Integer.parseInt(st.nextToken());
 			int checkbit = (1<<N)-1;
 			M &= checkbit;
-			if(M==checkbit) System.out.println("#"+test_case+" ON");
-			else System.out.println("#"+test_case+" OFF");
+			if(M==checkbit) sb.append("#"+test_case+" ON\n");
+			else sb.append("#"+test_case+" OFF\n");
 		}
+		System.out.println(sb);
 	}
 }
