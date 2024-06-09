@@ -50,12 +50,14 @@ public class Main {
 				}
 			}
 		}
+		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i <= N; i++) {
 			for (int j = 1; j <= N; j++) {
 				if(visited[i][j]==MAX) visited[i][j] = 0;
-				System.out.print(visited[i][j]+" ");
+				sb.append(visited[i][j]+" ");
 			}
-			System.out.println();
+			sb.append("\n");
 		}
+		System.out.println(sb);
 	}
 }
