@@ -16,9 +16,8 @@ public class Main {
 	static PriorityQueue<Integer> endTimeQueue = new PriorityQueue<Integer>();
 	
 	static class Lecture {
-		int idx, start, end;
-		public Lecture(int idx, int start, int end) {
-			this.idx = idx;
+		int start, end;
+		public Lecture(int start, int end) {
 			this.start = start;
 			this.end = end;
 		}
@@ -30,11 +29,11 @@ public class Main {
 		
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
-			int idx = Integer.parseInt(st.nextToken())-1;
+			int idx = Integer.parseInt(st.nextToken());
 			int start = Integer.parseInt(st.nextToken());
 			int end = Integer.parseInt(st.nextToken());
 			
-			pq.offer(new Lecture(idx, start, end));
+			pq.offer(new Lecture(start, end));
 		}
 		
 		int ans = 0;
