@@ -1,10 +1,11 @@
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
 	static int N;
 	static int[] p;
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static StringTokenizer st;
 	
 	public static void main(String[] args) throws IOException{
 		N = Integer.parseInt(br.readLine());
@@ -12,10 +13,9 @@ public class Main {
 		init();
 		
 		for (int i = 0; i < N-2; i++) {
-			String s = br.readLine();
-			String[] nums = s.split(" ");
-			int l = Integer.parseInt(nums[0])-1;
-			int r = Integer.parseInt(nums[1])-1;
+			st = new StringTokenizer(br.readLine());
+			int l = Integer.parseInt(st.nextToken())-1;
+			int r = Integer.parseInt(st.nextToken())-1;
 			
 			union(l, r);
 		}
